@@ -7,6 +7,9 @@ import { ProductComponent } from './product/product.component';
 import { BrandComponent } from './product/brand/brand.component';
 import { UnitComponent } from './product/unit/unit.component';
 import { CategoryComponent } from './product/category/category.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { CategoryComponent } from './product/category/category.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    TooltipModule.forRoot()
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
