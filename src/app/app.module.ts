@@ -9,7 +9,8 @@ import { UnitComponent } from './product/unit/unit.component';
 import { CategoryComponent } from './product/category/category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,14 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TooltipModule.forRoot()
+    ReactiveFormsModule,
+    FormsModule,
+    TooltipModule.forRoot(),
+    HttpClientModule
+
    
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
