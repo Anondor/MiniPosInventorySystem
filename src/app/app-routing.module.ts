@@ -7,7 +7,7 @@ import { UnitComponent } from './product/unit/unit.component';
 import { CategoryComponent } from './product/category/category.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+ // {path:'',component:HomeComponent},
   {path:'product',component:ProductComponent},
   {path:'brand',component:BrandComponent},
   {path:'unit',component:UnitComponent},

@@ -1,1 +1,44 @@
-<p>brand works!</p>
+
+<hr>
+<div style="float: left; width: 30%;">
+    <form >
+        
+          <div class="col">
+            <!-- First name -->
+            <label> Brand Name</label>
+            <input type="text" class="form-control" placeholder="First name">
+          </div>
+          <div class="col">
+            <!-- Last name -->
+            <label> Brand Status</label>
+            <select class="browser-default custom-select">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+              </select>
+          </div>
+     <button class="btn btn-primary" style="margin-left:20%; margin-top: 20px;">Add Brand</button>
+        <!-- E-mail -->
+        
+      </form>
+
+</div>
+<div style="float: left ; width: 65%;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tbody" *ngFor="let el of elements">
+            <th scope="row">{{ el.id }}</th>
+            <td>{{ el.first }}</td>
+            <td>{{ el.last }}</td>
+            <td>{{ el.handle }}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<!-- Default form register -->
+
+  <!-- Default form register -->
