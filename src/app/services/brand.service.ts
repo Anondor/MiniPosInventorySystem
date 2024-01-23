@@ -14,4 +14,22 @@ export class BrandService {
     return this.http.post<any>(`${this.url}`,data);
     
   }
+  getBrand()
+  {
+    return this.http.get<any>(`${this.url}`);
+  }
+
+  deleteBrand(id:any)
+  {
+    return this.http.delete<any>(`${this.url}/${id}`);
+  }
+  getBrandById(brandId:any)
+  {
+    return this.http.get<any>(`${this.url}/${brandId}`)
+  }
+  updateBrand(data:any)
+  {
+    return this.http.put<any>(`${this.url}`,data);
+
+  }
 }

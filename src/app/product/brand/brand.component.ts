@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BrandService } from 'src/app/services/brand.service';
+import { PrimeNGConfig } from 'primeng/api';
+
 
 @Component({
   selector: 'app-brand',
@@ -8,42 +10,96 @@ import { BrandService } from 'src/app/services/brand.service';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  
+
   brandDataForm!: FormGroup;
-  constructor(private brandService: BrandService) { }
+  brandData: any;
+  brandDataId: any;
+  isedit:boolean=false;
+  totalRecords:number=0;
+  headElements = ['#', 'Name', 'Status', 'Action'];
+  loading: boolean | undefined;
+
+  constructor(private brandService: BrandService, private primengConfig:PrimeNGConfig) {
+  }
 
   ngOnInit(): void {
-
     this.brandDataForm = new FormGroup({
       id: new FormControl(),
-      name: new FormControl(null,Validators.required),
-      status: new FormControl(null,Validators.required),
-
+      name: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
     });
+    this.getBrandData();
+    this.loading = true;
+    this.primengConfig.ripple = true;
   }
-  elements: any = [
-    { id: 1, first: 'Mark', last: 'Otto', handle: '@mdo' },
-    { id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat' },
-    { id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter' },
-  ];
 
-  headElements = ['ID', 'First', 'Last', 'Handle'];
   saveData(brandName: string, brandStatus: string) {
-
+    brandName = brandName.trim();
     let status = true;
     if (brandStatus == 'false') status = false;
-
+    brandName = brandName.toLowerCase();
     let model = {
       "brandId": 0,
       "name": brandName,
       "status": status
     }
+    let isExist = false;
+    this.brandData.forEach((element: any) => {
 
-    this.brandService.addBrand(model).subscribe((res => {
-      alert("Saved Successfully");
-      this.brandDataForm.reset();
+      if (brandName == element.name) {
+        isExist = true;
+        alert("this brand is already exist");
+      }
+    });
+    if (isExist == false) {
+      this.saveOrEditBrand(model);
+    }
+  }
+  saveOrEditBrand(model: any) {
+    if (this.isedit == false) {
+      this.brandService.addBrand(model).subscribe((res => {
+        alert("Saved Successfully");
+        this.brandDataForm.reset();
+      }))
+      this.getBrandData();
+    }
+
+    else {
+      model.brandId=this.brandDataId;
+      this.brandService.updateBrand(model).subscribe((res => {
+        alert("Update Successfully");
+        this.brandDataForm.reset();
+        this.isedit = false;
+      }))
+    }
+  }
+  getBrandData() {
+    this.brandService.getBrand().subscribe((res => {
+      this.brandData = res.result;
+      this.totalRecords=res.result.length;
     }))
+  }
+  deleteBrandData(id: any) {
+    this.brandService.deleteBrand(id).subscribe((res => {
+      this.brandData.splice(this.brandData.findIndex((a: { brandId: any; }) => a.brandId === id), 1)
+    }))
+  }
+  editBrandData(brandId: any) {
+    this.brandService.getBrandById(brandId).subscribe((res => {
+      this.brandDataForm.patchValue(res.result);
+      this.brandDataId=brandId;
+
+      let model = {
+        "brandId": 0,
+        "name": this.brandDataForm.value.name,
+        "status": this.brandDataForm.value.status
+
+      }
+      this.isedit=true;
+    }))
+
 
   }
 
 }
+

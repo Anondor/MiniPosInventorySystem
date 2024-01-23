@@ -17,7 +17,7 @@
                 <option value=false>Inactive</option>
               </select>
           </div>
-     <button class="btn btn-primary" style="margin-left:20%; margin-top: 20px;" (click)="saveData(this.brandDataForm.value.name,this.brandDataForm.value.status)"  [disabled]="this.brandDataForm.invalid">Add Brand</button>
+     <button class="btn btn-primary" style="margin-left:20%; margin-top: 20px;" (click)="saveData(this.brandDataForm.value.name,this.brandDataForm.value.status)"  [disabled]="this.brandDataForm.invalid">Save</button>
       <br />
       <br />
         
@@ -32,11 +32,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="tbody" *ngFor="let el of elements">
-            <th scope="row">{{ el.id }}</th>
-            <td>{{ el.first }}</td>
-            <td>{{ el.last }}</td>
-            <td>{{ el.handle }}</td>
+          <tr class="tbody" *ngFor="let brand of brandData; let i=index">
+            <th scope="row">{{ i}}</th>
+            <td>{{ brand.name }}</td>
+            <td>{{ brand.status }}</td>
+            <td><button class="btn btn-warning" (click)="editBrandData(brand.brandId)" >Edit</button>&nbsp;
+              <button class="btn btn-danger" (click)="deleteBrandData(brand.brandId)" >Delete</button></td>
           </tr>
         </tbody>
       </table>
