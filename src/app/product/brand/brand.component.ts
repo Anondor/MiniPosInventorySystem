@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BrandService } from 'src/app/services/brand.service';
-import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -17,9 +16,8 @@ export class BrandComponent implements OnInit {
   isedit:boolean=false;
   totalRecords:number=0;
   headElements = ['#', 'Name', 'Status', 'Action'];
-  loading: boolean | undefined;
 
-  constructor(private brandService: BrandService, private primengConfig:PrimeNGConfig) {
+  constructor(private brandService: BrandService) {
   }
 
   ngOnInit(): void {
@@ -29,8 +27,6 @@ export class BrandComponent implements OnInit {
       status: new FormControl(null, Validators.required),
     });
     this.getBrandData();
-    this.loading = true;
-    this.primengConfig.ripple = true;
   }
 
   saveData(brandName: string, brandStatus: string) {

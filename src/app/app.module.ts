@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NewProductComponent } from './product/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ProductComponent,
     BrandComponent,
     UnitComponent,
-    CategoryComponent
+    CategoryComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,

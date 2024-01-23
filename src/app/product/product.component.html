@@ -1,1 +1,26 @@
-<p>product works!</p>
+<hr>
+<div style="width: 70%; margin: auto;">
+<button class="btn btn-primary" style="float: right;">New Product</button>
+<br>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
+      </tr>
+    </thead>
+    <tbody>
+        
+      <tr class="tbody" *ngFor="let product of productData; let i=index">
+        <th scope="row">{{ i+1}}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.status }}</td>
+        <td>{{product.brandId }}</td>
+        <td> {{product.categoryId}} </td>
+        <td><button class="btn btn-warning" >Edit</button>&nbsp;
+          <button class="btn btn-danger"  >Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
