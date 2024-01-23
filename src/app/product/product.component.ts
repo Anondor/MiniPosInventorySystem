@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService, private router:Router) { }
   headElements = ['#', 'Name', 'Status', 'Brand','Category','Action'];
   productData:any;
 
@@ -17,12 +18,13 @@ export class ProductComponent implements OnInit {
   }
   getProductData()
   {
-    this.productService.getProduct().subscribe((res => {
+    this.productService.getProducts().subscribe((res => {
       this.productData = res.result;
-      console.log(this.productData);
-      debugger
     }))
-
+  }
+  newProductPage()
+  {
+    this.router.navigate(['new-product']);
   }
 
 }

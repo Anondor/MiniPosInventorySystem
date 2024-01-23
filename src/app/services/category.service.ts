@@ -4,18 +4,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  url: string = 'https://localhost:7257/api/Product';
-
+export class CategoryService {
+  url: string = 'https://localhost:7257/api/Category';
 
   constructor(private http: HttpClient) { }
-
-  getProducts()
+  getCategory()
   {
     return this.http.get<any>(`${this.url}`);
-  }
-  addProducts(data:any)
-  {
-    return this.http.post<any>(`${this.url}`,data);
   }
 }
