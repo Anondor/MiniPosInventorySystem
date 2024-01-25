@@ -6,14 +6,7 @@
         <label> Product Name</label>
         <input class="form-control" placeholder="First name" formControlName="name">
     </div>
-    <div class="col">
 
-        <label> Product Status</label>
-        <select class="browser-default custom-select" formControlName="status">
-            <option value=true>Active</option>
-            <option value=false>Inactive</option>
-        </select>
-    </div>
     <div class="col">
 
         <label> Choose Brand </label>
@@ -28,8 +21,16 @@
             </option>
         </select>
     </div>
+    <div class="col">
+
+        <label> Product Status</label>
+        <select class="browser-default custom-select" formControlName="status">
+            <option value=true>Active</option>
+            <option value=false>Inactive</option>
+        </select>
+    </div>
     <button class="btn btn-primary" style="margin-left:40%; margin-top: 20px;"
-        (click)="saveData(this.productDataForm.value)" [disabled]="this.productDataForm.invalid">Save</button>
+        (click)="saveOrEditProduct(productDataForm.value)" [disabled]="this.productDataForm.invalid">Save</button>
     <br />
     <br />
 </form>

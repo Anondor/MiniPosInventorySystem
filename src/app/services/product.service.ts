@@ -18,4 +18,18 @@ export class ProductService {
   {
     return this.http.post<any>(`${this.url}`,data);
   }
+  deleteProduct(id:any)
+  {
+    return this.http.delete<any>(`${this.url}/${id}`);
+  }
+  getProductById(id:any)
+  {
+    return this.http.get<any>(`${this.url}/${id}`)
+  }
+  updateProduct(data:any)
+  {
+    debugger
+    return this.http.put<any>(`${this.url}`,data);
+
+  }
 }

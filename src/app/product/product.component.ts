@@ -9,22 +9,26 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService:ProductService, private router:Router) { }
-  headElements = ['#', 'Name', 'Status', 'Brand','Category','Action'];
-  productData:any;
+  constructor(private productService: ProductService, private router: Router) { }
+  headElements = ['#', 'Name', 'Status', 'Brand', 'Category', 'Action'];
+  productData: any;
 
   ngOnInit(): void {
     this.getProductData();
   }
-  getProductData()
-  {
+  getProductData() {
     this.productService.getProducts().subscribe((res => {
       this.productData = res.result;
     }))
   }
-  newProductPage()
-  {
+  newProductPage() {
     this.router.navigate(['new-product']);
   }
+  deleteProductData(id: any) {
+    this.productService.deleteProduct(id).subscribe((res => {
+      this.productData.splice(this.productData.findIndex((a: { id: any; }) => a.id === id), 1)
+    }))
+  }
+
 
 }

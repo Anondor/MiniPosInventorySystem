@@ -17,8 +17,8 @@
         <td>{{ product.status }}</td>
         <td>{{product.brandId }}</td>
         <td> {{product.categoryId}} </td>
-        <td><button class="btn btn-warning" >Edit</button>&nbsp;
-          <button class="btn btn-danger"  >Delete</button></td>
+        <td><button class="btn btn-warning" routerLink="/new-product/{{product.id}}" >Edit</button>&nbsp;
+          <button class="btn btn-danger"  (click)="deleteProductData(product.id)" >Delete</button></td>
       </tr>
     </tbody>
   </table>
