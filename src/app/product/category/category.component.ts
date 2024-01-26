@@ -61,14 +61,12 @@ export class CategoryComponent implements OnInit {
         this.categoryData.push(model);
       }))
     }
-
     else {
       model.categoryId = this.categoryDataId;
       this.categoryService.updateCategory(model).subscribe((res => {
         alert("Update Successfully");
         this.categoryDataForm.reset();
         this.isedit = false;
-
         for (let index = 0; index < this.categoryData.length; index++) {
           if (this.categoryData[index].categoryId == model.categoryId) this.categoryData[index] = model;
         }
