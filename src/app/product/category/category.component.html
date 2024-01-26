@@ -1,1 +1,45 @@
-<p>category works!</p>
+
+<hr>
+<div style="float: left; width: 30%; border-style: solid;">
+    <form  [formGroup]="categoryDataForm">
+      <br />
+        
+          <div class="col">
+           
+            <label> Category Name</label>
+            <input  class="form-control" placeholder="First name"  formControlName="name">
+          </div>
+          <div class="col">
+           
+            <label> Category Status</label>
+            <select class="browser-default custom-select" formControlName="status">
+                <option value=true>Active</option>
+                <option value=false>Inactive</option>
+              </select>
+          </div>
+     <button class="btn btn-primary" style="margin-left:20%; margin-top: 20px;" (click)="saveData(this.categoryDataForm.value.name,this.categoryDataForm.value.status)"  [disabled]="this.categoryDataForm.invalid">Save</button>
+      <br />
+      <br />
+        
+      </form>
+
+</div>
+<div style="float: left ; width: 65%; margin-left: 1%;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tbody" *ngFor="let category of categoryData; let i=index">
+            <th scope="row">{{ i}}</th>
+            <td>{{ category.name }}</td>
+            <td>{{ category.status }}</td>
+            <td><button class="btn btn-warning" (click)="editCategoryData(category.categoryId)" >Edit</button>&nbsp;
+              <button class="btn btn-danger" (click)="deleteCategoryData(category.categoryId)" >Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
